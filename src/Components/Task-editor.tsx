@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
-import TaskItem from "../Models/TaskItem";
+import {TaskItem} from "../Models/TaskItem";
 import TaskStore from "../Stores/TaskStore";
 
 @inject('TaskStore')
@@ -8,13 +8,8 @@ import TaskStore from "../Stores/TaskStore";
 export default class TaskEditor extends React.Component<{ taskStore: typeof TaskStore }> {
     textTask: any;
 
-    addTodo = (arg0: { title: string; completed: boolean; }) => {
-        debugger;
-        let item: TaskItem = {            
-            title: arg0.title,
-            completed: arg0.completed
-        }
-        this.props.taskStore.addTask(item);
+    addTask = (item : TaskItem) => {
+        this.props.taskStore.createTask(item);        
     }
 
     render() {
@@ -22,34 +17,34 @@ export default class TaskEditor extends React.Component<{ taskStore: typeof Task
             <React.Fragment>
                 <div className="alert alert-primary">
                     <div className="d-inline col-4">
-                        Total items: &nbsp;
+                        Total items: 
                         <span className="badge badge-info">{this.props.taskStore.getTaskCount.total}</span>                       
                     </div>
                     <div className="d-inline col-4">
-                        Finished items: &nbsp;
+                        Finished items: 
                         <span className="badge badge-info">{this.props.taskStore.getTaskCount.completed}</span>                        
                     </div>
                     <div className="d-inline col-4">
-                        Unfinished items: &nbsp;
+                        Unfinished items:
                         <span className="badge badge-info">{this.props.taskStore.getTaskCount.notCompleted}</span>                       
                     </div>
                 </div>
-                <div className="form-group">
-
+                <div className="form-group"> 
+                {/* Move this to component */}
                     <input type="text" className="form-control" ref={e => this.textTask = e} placeholder="Search..." />
                 </div>
                 <div className="form-group">
                     <button
                         className="btn btn-primary"
                         onClick={() => {
-                            this.addTodo({
+                            this.addTask({                                
                                 title: this.textTask.value,
                                 completed: true,
                             })
                             this.textTask.value = "";
                         }}
                     >
-                        Add Todo
+                        Add Task
                     </button>
                 </div>
             </React.Fragment>

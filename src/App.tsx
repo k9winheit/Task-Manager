@@ -1,5 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import TaskEditor from './Components/Task-editor';
 import TaskList from './Components/Task-List';
@@ -15,11 +13,6 @@ function App() {
       <TaskEditor taskStore={TaskStore}/>
       <TaskList taskStore={TaskStore} />
       </Provider>
-      
-      {/* <Provider TaskStore={TaskStore}>
-      <TaskEditor />
-      <TaskList  />
-      </Provider> */}
     </div>
   );
 }
