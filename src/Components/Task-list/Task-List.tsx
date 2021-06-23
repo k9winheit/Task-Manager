@@ -1,15 +1,15 @@
 import { inject,observer  } from "mobx-react";
 import React from "react";
-import {TaskItem} from "../Models/TaskItem";
-import TaskStore from "../Stores/TaskStore";
+import {TaskItem} from "../../Models/TaskItem";
+import TaskStore from "../../Stores/TaskStore";
 import './Task-List.css';
+import configData from "../../Assets/config-names.json"
 
 @inject('TaskStore')
 @observer
 export default class TaskList extends React.Component<{taskStore:typeof TaskStore}> {   
   
-    toggleTodo = (id: number) => { 
-        debugger; 
+    toggleTodo = (id: number) => {        
         this.props.taskStore.toggleTask(id);  
     }
 
@@ -24,9 +24,9 @@ export default class TaskList extends React.Component<{taskStore:typeof TaskStor
                     <table className="table table-hover">
                         <thead className="thead-light">
                             <tr>
-                                <th>Title</th>
-                                <th>Completed?</th>
-                                <th>Actions</th>
+                                <th>{configData.lbl_title}</th>
+                                <th>{configData.lbl_complete_status}</th>
+                                <th>{configData.lbl_action}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,7 +45,7 @@ export default class TaskList extends React.Component<{taskStore:typeof TaskStor
                                             className="btn btn-sm btn-danger"
                                             onClick={() => this.removeTodo(task.id!)}
                                         >
-                                            Remove
+                                           {configData.btn_remove}
                                         </button>
                                     </td>
                                 </tr>

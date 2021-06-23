@@ -6,7 +6,16 @@ class TaskStore {
     @observable tasks: TaskItem[] = observable.array([]);
    
     @action createTask = (taskItem: TaskItem) => {              
-        this.tasks.push({...taskItem,id : this.tasks.length > 0? Math.max(...this.tasks.map(t=>t.id!)) + 1 : 1})        
+        //Method 1 - same id can be repeated
+        //this.tasks.push({ ...taskItem, id: Math.random()}) 
+        //Method 2
+        this.tasks.push({ ...taskItem, id: Date.now()})   
+
+        //Method 3 use reduce  (Performance issue)          
+        //this.tasks.push({ ...taskItem, id: this.tasks.reduce((max, item) => (item.id > max ? item.id : max),this.tasks[0].id) + 1 })
+
+        //Method 4 spread operator and map
+        //this.tasks.push({ ...taskItem, id: this.tasks.length > 0 ? Math.max(...this.tasks.map(t => t.id!)) + 1 : 1 }) 
     }
 
     @action removeTask = (id: number) => {        

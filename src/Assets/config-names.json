@@ -1,0 +1,12 @@
+{
+    "btn_add": "Add Task",
+    "btn_toggle": "Toggle",
+    "btn_remove": "Delete",
+    "place_holder_task":"Enter task",
+    "lbl_title":"Title",
+    "lbl_complete_status":"Completed?",
+    "lbl_action":"Actions",
+    "lbl_total":"Total",
+    "lbl_finised":"Finished",
+    "lbl_unfinised":"Unfinished "
+}
